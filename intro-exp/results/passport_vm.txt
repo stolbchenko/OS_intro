@@ -1,0 +1,138 @@
+date
+Сб 03 окт 2026 22:32:41 MSK
+uname -a
+Linux istnoteast 6.12.111+deb13-arm64 #1 SMP Debian 6.12.111-1 (2026-09-28) aarch64 GNU/Linux
+lscpu
+Architecture:                            aarch64
+CPU op-mode(s):                          64-bit
+Byte Order:                              Little Endian
+CPU(s):                                  4
+On-line CPU(s) list:                     0-3
+Vendor ID:                               Apple
+Model name:                              -
+Model:                                   0
+Thread(s) per core:                      1
+Core(s) per cluster:                     4
+Socket(s):                               -
+Cluster(s):                              1
+Stepping:                                0x0
+BogoMIPS:                                48,00
+Flags:                                   fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm jscvt fcma lrcpc dcpop sha3 asimddp sha512 asimdfhm dit uscat ilrcpc flagm ssbs sb paca pacg dcpodp flagm2 frint
+NUMA node(s):                            1
+NUMA node0 CPU(s):                       0-3
+Vulnerability Gather data sampling:      Not affected
+Vulnerability Indirect target selection: Not affected
+Vulnerability Itlb multihit:             Not affected
+Vulnerability L1tf:                      Not affected
+Vulnerability Mds:                       Not affected
+Vulnerability Meltdown:                  Not affected
+Vulnerability Mmio stale data:           Not affected
+Vulnerability Reg file data sampling:    Not affected
+Vulnerability Retbleed:                  Not affected
+Vulnerability Spec rstack overflow:      Not affected
+Vulnerability Spec store bypass:         Mitigation; Speculative Store Bypass disabled via prctl
+Vulnerability Spectre v1:                Mitigation; __user pointer sanitization
+Vulnerability Spectre v2:                Mitigation; CSV2, but not BHB
+Vulnerability Srbds:                     Not affected
+Vulnerability Tsa:                       Not affected
+Vulnerability Tsx async abort:           Not affected
+Vulnerability Vmscape:                   Not affected
+lscpu -e
+CPU NODE CLUSTER CORE L1d:L1i:L2 ONLINE
+  0    0       0    0 0:0:0         yes
+  1    0       0    1 1:1:0         yes
+  2    0       0    2 2:2:0         yes
+  3    0       0    3 3:3:0         yes
+nproc
+4
+free -h
+               total        used        free      shared  buff/cache   available
+Mem:           3,8Gi       309Mi       2,0Gi       524Ki       1,6Gi       3,5Gi
+Swap:          1,6Gi          0B       1,6Gi
+grep . /sys/devices/system/cpu/cpu0/cache/index*/{level,type,size}
+/sys/devices/system/cpu/cpu0/cache/index0/level:1
+/sys/devices/system/cpu/cpu0/cache/index1/level:1
+/sys/devices/system/cpu/cpu0/cache/index2/level:2
+/sys/devices/system/cpu/cpu0/cache/index0/type:Data
+/sys/devices/system/cpu/cpu0/cache/index1/type:Instruction
+/sys/devices/system/cpu/cpu0/cache/index2/type:Unified
+grep: /sys/devices/system/cpu/cpu0/cache/index*/size: Нет такого файла или каталога
+lsblk -o NAME,SIZE,TYPE,ROTA,MODEL,MOUNTPOINT
+NAME    SIZE TYPE ROTA MODEL    MOUNTPOINT
+sda    31,3G disk    1 HARDDISK 
+├─sda1   16M part    1          
+├─sda2  977M part    1          /boot/efi
+├─sda3 28,7G part    1          /
+└─sda4  1,6G part    1          [SWAP]
+sr0    1024M rom     0 CD-ROM   
+cat /sys/block/sda/queue/rotational
+1
+df -h ~
+Файловая система Размер Использовано  Дост Использовано% Cмонтировано в
+/dev/sda3           29G         2,5G   25G           10% /
+findmnt -no SOURCE,FSTYPE,OPTIONS /
+/dev/sda3 ext4 rw,relatime,errors=remount-ro
+sudo lshw -class disk -class memory -short
+H/W path        Device      Class       Description
+===================================================
+/0/5                        memory      4GiB System memory
+/0/3/0/0.0.0    /dev/sda    disk        33GB HARDDISK
+/0/3/0/0.1.0    /dev/cdrom  disk        CD-ROM
+sudo smartctl -a /dev/sda
+smartctl 7.4 2023-08-01 r5530 [aarch64-linux-6.12.111+deb13-arm64] (local build)
+Copyright (C) 2002-23, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF INFORMATION SECTION ===
+Vendor:               VBOX
+Product:              HARDDISK
+Revision:             1.0
+Compliance:           SPC-3
+User Capacity:        33 592 180 736 bytes [33,5 GB]
+Logical block size:   512 bytes
+Logical Unit id:      error: bad structure
+Device type:          disk
+Local Time is:        Sat Oct  3 22:44:21 2026 MSK
+SMART support is:     Unavailable - device lacks SMART capability.
+
+=== START OF READ SMART DATA SECTION ===
+Current Drive Temperature:     0 C
+Drive Trip Temperature:        0 C
+
+Error Counter logging not supported
+
+Device does not support Self Test logging
+cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+cat: /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor: Нет такого файла или каталога
+sudo cpupower frequency-info
+analyzing CPU 0:
+  no or unknown cpufreq driver is active on this CPU
+  CPUs which run at the same hardware frequency: Not Available
+  CPUs which need to have their frequency coordinated by software: Not Available
+  maximum transition latency:  Cannot determine or is not supported.
+Not Available
+  available cpufreq governors: Not Available
+  Unable to determine current policy
+  current CPU frequency: Unable to call hardware
+  current CPU frequency:  Unable to call to kernel
+numactl --hardware
+available: 1 nodes (0)
+node 0 cpus: 0 1 2 3
+node 0 size: 3911 MB
+node 0 free: 2083 MB
+node distances:
+node     0 
+   0:   10 
+systemd-detect-virt
+none
+sysctl vm.dirty_ratio vm.dirty_background_ratio vm.dirty_expire_centisecs vm.dirty_writeback_centisecs
+-bash: sysctl: команда не найдена
+clang --version
+Debian clang version 19.1.7 (3+b1)
+Target: aarch64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: /usr/lib/llvm-19/bin
+grep . /proc/sys/vm/dirty_ratio /proc/sys/vm/dirty_background_ratio /proc/sys/vm/dirty_expire_centisecs /proc/sys/vm/dirty_writeback_centisecs
+/proc/sys/vm/dirty_ratio:20
+/proc/sys/vm/dirty_background_ratio:10
+/proc/sys/vm/dirty_expire_centisecs:3000
+/proc/sys/vm/dirty_writeback_centisecs:500

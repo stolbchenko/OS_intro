@@ -1,0 +1,58 @@
+Hardware:
+
+    Hardware Overview:
+
+      Model Name: MacBook Pro
+      Model Identifier: MacBookPro17,1
+      Model Number: Z11C00030RU/A
+      Chip: Apple M1
+      Total Number of Cores: 8 (4 Performance and 4 Efficiency)
+      Memory: 16 GB
+      System Firmware Version: 18000.161.10
+      OS Loader Version: 18000.161.10
+
+Storage:
+
+    Macintosh HD - Data:
+
+      Free: 710,23 GB (710 225 580 032 bytes)
+      Capacity: 994,66 GB (994 662 584 320 bytes)
+      Mount Point: /System/Volumes/Data
+      File System: APFS
+      Writable: Yes
+      Ignore Ownership: No
+      BSD Name: disk3s5
+      Physical Drive:
+          Device Name: APPLE SSD AP1024Q
+          Media Name: AppleAPFSMedia
+          Medium Type: SSD
+          Protocol: Apple Fabric
+          Internal: Yes
+          Partition Map Type: Unknown
+          S.M.A.R.T. Status: Verified
+
+    Macintosh HD:
+
+      Free: 710,23 GB (710 225 580 032 bytes)
+      Capacity: 994,66 GB (994 662 584 320 bytes)
+      Mount Point: /
+      File System: APFS
+      Writable: No
+      Ignore Ownership: No
+      BSD Name: disk3s1s1
+      Physical Drive:
+          Device Name: APPLE SSD AP1024Q
+          Media Name: AppleAPFSMedia
+          Medium Type: SSD
+          Protocol: Apple Fabric
+          Internal: Yes
+          Partition Map Type: Unknown
+          S.M.A.R.T. Status: Verified
+
+hw.ncpu: 8
+hw.memsize: 17179869184
+hw.perflevel0.logicalcpu: 4
+hw.perflevel1.logicalcpu: 4
+hw.perflevel0.l1dcachesize: 131072
+hw.perflevel0.l2cachesize: 12582912
+7.2.20r175154
